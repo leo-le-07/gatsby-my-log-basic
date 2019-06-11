@@ -1,12 +1,43 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "@components/bio"
-import Layout from "@components/layout"
-import SEO from "@components/seo"
-import { rhythm } from "@utils/typography"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import { rhythm } from "../utils/typography"
 
-class BlogIndex extends React.Component {
+// Please note that you can use https://github.com/dotansimha/graphql-code-generator
+// to generate all types from graphQL schema
+interface INode {
+  excerpt: string
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    title: string
+    date: string
+    description: string
+  }
+}
+
+interface IEdge {
+  node: INode
+}
+
+interface IndexPageProps {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    },
+    allMarkdownRemark: {
+      edges: IEdge[]
+    }
+  }
+  location: any
+}
+
+class BlogIndex extends React.Component<IndexPageProps, {}> {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
@@ -15,7 +46,6 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (

@@ -1,11 +1,18 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { rhythm, scale } from "@utils/typography"
+import { rhythm, scale } from "../utils/typography"
 
-class Layout extends React.Component {
+interface ILayout {
+  location: any
+  title: string
+  children: any
+}
+
+class Layout extends React.Component<ILayout, {}> {
   render() {
     const { location, title, children } = this.props
+    // @ts-ignore
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
