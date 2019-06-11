@@ -64,3 +64,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+// exports.onCreateWebpackConfig = function ({ actions }) {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         '@src': path.resolve(__dirname, 'src'),
+//         '@components': path.resolve(__dirname, 'src/components'),
+//         '@utils': path.resolve(__dirname, 'src/utils'),
+//       }
+//     }
+//   })
+// }

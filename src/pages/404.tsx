@@ -4,7 +4,12 @@ import { graphql } from "gatsby"
 import Layout from "@components/layout"
 import SEO from "@components/seo"
 
-class NotFoundPage extends React.Component {
+interface INotFound {
+  data: any
+  location: any
+}
+
+class NotFoundPage extends React.Component<INotFound, {}> {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title

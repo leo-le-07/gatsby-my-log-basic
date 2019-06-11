@@ -1,6 +1,6 @@
 {
   "include": [
-    "./src/**/*"
+    "src/**/*"
   ],
   "compilerOptions": {
     "target": "esnext",
@@ -9,8 +9,8 @@
       "dom",
       "es2017"
     ],
-    // "allowJs": true,
-    // "checkJs": true,
+    "allowJs": true,
+    "checkJs": true,
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
@@ -20,12 +20,11 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@components/*": [
-        "/components/*"
-      ]
+      "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@templates/*": ["src/templates/*"],
+      "@static/*": ["src/static/*"],
     }
   }
 }
