@@ -1,15 +1,12 @@
 ---
-title: New Beginnings
+title: Khởi đầu mới
 date: "2015-05-28T22:40:32.169Z"
 description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
 ---
 
-Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean. A small river named
-Duden flows by their place and supplies it with the necessary regelialia.
+Theo tính toán của Long, Facebook sẽ để lãi suất ở mức 2,35% – bằng với mức lãi suất với tỷ lệ dự trữ vượt mức (IOER). Vì stablecoin của Facebook được niêm yết giá với USD nên Facebook sẽ chọn Cục dự trữ liên bang Mỹ làm đối tác chiến lược chính. Dù cho các stablecoin hiện tại trên thị trường không trả lãi nhưng Long dự đoán do Globalcoin của Facebook quá lớn nên chắc chắn sẽ trả lãi.
 
-## On deer horse aboard tritely yikes and much
+## Thật nhiều yêu thương quý giá
 
 The Big Oxmox advised her not to do so, because there were thousands of bad
 Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
