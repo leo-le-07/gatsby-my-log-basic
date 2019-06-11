@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
@@ -72,6 +74,19 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          "@pages": path.resolve(__dirname, 'src/pages'),
+          "@components": path.resolve(__dirname, 'src/components'),
+          "@utils": path.resolve(__dirname, 'src/utils'),
+          "@templates": path.resolve(__dirname, 'src/templates'),
+          "@static": path.resolve(__dirname, 'src/static'),
+        },
+        extensions: [],
       },
     },
   ],
