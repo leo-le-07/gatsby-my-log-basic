@@ -6,3 +6,13 @@
 
 // And to shim assets, use (one file extension per `declare`):
 // declare module "*.png"
+
+interface ILocation {
+  host: string
+  hostname: string
+  href: string
+  key: string
+  origin: string
+  pathname: string
+  port: string
+}

@@ -34,7 +34,7 @@ interface IndexPageProps {
       edges: IEdge[]
     }
   }
-  location: any
+  location: ILocation
 }
 
 class BlogIndex extends React.Component<IndexPageProps, {}> {

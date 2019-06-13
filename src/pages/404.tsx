@@ -6,7 +6,7 @@ import SEO from "@components/seo"
 
 interface INotFound {
   data: any
-  location: any
+  location: ILocation
 }
 
 class NotFoundPage extends React.Component<INotFound, {}> {

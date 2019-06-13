@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { rhythm, scale } from "@utils/typography"
 
 interface ILayout {
-  location: any
+  location: ILocation
   title: string
   children: any
 }
