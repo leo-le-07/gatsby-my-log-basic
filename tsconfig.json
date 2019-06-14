@@ -21,10 +21,15 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["src/pages/*"],
+      "@static/*": [
+        "src/static/*"
+      ],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
+      "@constants/*": [
+        "src/constants/*"
+      ],
       "@templates/*": ["src/templates/*"],
-      "@static/*": ["src/static/*"],
     }
   }
 }

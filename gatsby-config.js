@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Traderviet Bitcoin`,
     author: `Kyle Mathews`,
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
@@ -83,6 +83,7 @@ module.exports = {
           "@pages": path.resolve(__dirname, 'src/pages'),
           "@components": path.resolve(__dirname, 'src/components'),
           "@utils": path.resolve(__dirname, 'src/utils'),
+          "@constants": path.resolve(__dirname, 'src/constants'),
           "@templates": path.resolve(__dirname, 'src/templates'),
           "@static": path.resolve(__dirname, 'src/static'),
         },
@@ -90,5 +91,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-styled-components`,
   ],
 }

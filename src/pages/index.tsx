@@ -1,8 +1,11 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import styled from 'styled-components'
 
-import Layout from "@components/layout"
-import SEO from "@components/seo"
+import Layout from "@components/common/Layout"
+import SEO from "@components/common/Seo"
+import FeaturedNews from '@components/home/FeaturedNews'
+
 import { rhythm } from "@utils/typography"
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
@@ -18,6 +21,12 @@ interface INode {
     description: string
   }
 }
+
+const StyledContainer = styled.div`
+  .featured-container {
+    margin-top: ${props => props.theme.rhythm(2)};
+  }
+`
 
 interface IEdge {
   node: INode
@@ -45,29 +54,34 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </div>
-          )
-        })}
+        <StyledContainer>
+          <SEO title="All posts" />
+          <div className="featured-container">
+            <FeaturedNews />
+          </div>
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug
+            return (
+              <div key={node.fields.slug}>
+                <h3
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.frontmatter.date}</small>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: node.frontmatter.description || node.excerpt,
+                  }}
+                />
+              </div>
+            )
+          })}
+        </StyledContainer>
       </Layout>
     )
   }

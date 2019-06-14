@@ -11,6 +11,14 @@ customTheme.overrideThemeStyles = () => {
 
 const typography = new Typography(customTheme)
 
+typography.overrideStyles = () => {
+  return {
+    body: {
+      background: '#F7F7F7'
+    }
+  }
+}
+
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
   typography.injectStyles()

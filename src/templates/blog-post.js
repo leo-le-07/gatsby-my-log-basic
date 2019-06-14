@@ -2,8 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "@components/bio"
-import Layout from "@components/layout"
-import SEO from "@components/seo"
+import Layout from "@components/common/Layout"
+import SEO from "@components/common/Seo"
 import { rhythm, scale } from "@utils/typography"
 
 class BlogPostTemplate extends React.Component {
