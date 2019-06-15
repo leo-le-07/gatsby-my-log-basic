@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
+import { Link, StaticQuery, graphql } from 'gatsby'
+import Image from "gatsby-image"
 
 import featured1 from '@static/examples/ex-1.jpg';
 
@@ -43,19 +44,42 @@ const StyledContainer = styled.div`
 class FeaturedNews extends React.Component<{}, {}> {
   render() {
     return (
-      <StyledContainer>
-        <Link to="hi-folks">
-          <div className="thumb">
-            <img src={featured1} alt="Featured 1" />
-          </div>
-          <article className="content">
-            <h3>Shazam trên android có thể nhận diện được bài hát qua tai nghe</h3>
-            <div className="info">18 phút trước</div>
-          </article>
-        </Link>
-      </StyledContainer>
+      <StaticQuery
+        query={featuredNewsQuery}
+        render={(data) => {
+          const { featured } = data
+          return (
+            <StyledContainer>
+              <Link to="hi-folks">
+                <div className="thumb">
+                  <Image
+                    fluid={featured.childImageSharp.fluid}
+                    alt="Featured 1"
+                  />
+                </div>
+                <article className="content">
+                  <h3>Shazam trên android có thể nhận diện được bài hát qua tai nghe</h3>
+                  <div className="info">18 phút trước</div>
+                </article>
+              </Link>
+            </StyledContainer>
+          )
+        }}
+      />
     )
   }
 }
+
+const featuredNewsQuery = graphql`
+  query FeaturedNewsQuery {
+    featured: file(absolutePath:{ regex: "/ex-1.jpg/" }) {
+      childImageSharp {
+        fluid(maxWidth: 670, maxHeight: 400) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 export default FeaturedNews

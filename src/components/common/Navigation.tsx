@@ -74,7 +74,7 @@ class Navigation extends React.Component<{}, {}> {
     return (
       <StyledContainer>
         <Link to={routeConstants.home.path} className="logo">
-          <img src={logo} alt="Logo" width="140" height="20" />
+          <img src={logo} alt="Logo" width="120" height="20" />
         </Link>
         <ul className="menu-list">
           <li className="menu-item">
