@@ -17,6 +17,7 @@ export const colors = {
   primary: '#222',
   secondary: '#F7D02D',
   mainBackground: '#F7F7F7',
+  border: '#ebebeb',
 
   black500: '#222',
   black600: '#161D28',

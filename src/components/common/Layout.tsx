@@ -21,6 +21,10 @@ const theme = {
 
 const AppContainer = styled.div`
   background: ${props => props.theme.colors.mainBackground};
+
+  a {
+    color: ${props => props.theme.colors.black500};
+  }
 `
 
 const HeaderContainer = styled.div`
@@ -31,14 +35,14 @@ const HeaderContainer = styled.div`
 const MainContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
-  max-width: ${props => props.theme.rhythm(24)};
+  max-width: ${props => props.theme.rhythm(26)};
   padding: 0 ${props => props.theme.rhythm(3 / 4)};
 `
 
 const FooterContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
-  max-width: ${props => props.theme.rhythm(24)};
+  max-width: ${props => props.theme.rhythm(26)};
   padding: 0 ${props => props.theme.rhythm(3 / 4)};
 `
 

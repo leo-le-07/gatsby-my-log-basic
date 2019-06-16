@@ -8,7 +8,7 @@ import logo from '@static/genk-logo.png'
 const StyledContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
-  max-width: ${props => props.theme.rhythm(24)};
+  max-width: ${props => props.theme.rhythm(26)};
   padding: 0 ${props => props.theme.rhythm(3 / 4)};
   display: flex;
 

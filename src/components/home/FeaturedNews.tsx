@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
 
     .info {
       ${props => ({
-        ...props.theme.scale(-2 / 5)
+        ...props.theme.scale(- 0.4)
       })}
       color: ${props => props.theme.colors.gray500};
       margin-bottom: ${props => props.theme.rhythm(0.3)};

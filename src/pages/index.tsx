@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Layout from "@components/common/Layout"
 import SEO from "@components/common/Seo"
 import FeaturedNews from '@components/home/FeaturedNews'
+import ThumbnailPost from '@components/common/ThumbnailPost'
 
 import { rhythm } from "@utils/typography"
 
@@ -59,6 +60,8 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
           <div className="featured-container">
             <FeaturedNews />
           </div>
+          <ThumbnailPost />
+          <ThumbnailPost />
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
             return (
