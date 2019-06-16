@@ -37,6 +37,13 @@ const MainContainer = styled.div`
   margin-right: auto;
   max-width: ${props => props.theme.rhythm(26)};
   padding: 0 ${props => props.theme.rhythm(3 / 4)};
+  margin-top: ${props => props.theme.rhythm(2)};
+
+  /* Mobile Styles */
+  @media only screen and (max-width: 600px) {
+    padding: 0 0;
+    margin-top: 0;
+  }
 `
 
 const FooterContainer = styled.div`
