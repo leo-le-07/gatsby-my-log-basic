@@ -56,6 +56,7 @@ const StyledContainer = styled.div`
     }
   }
 
+  /* Mobile Styles */
   @media only screen and (max-width: 600px) {
     .menu-list {
       ${props => ({
@@ -74,17 +75,12 @@ class Navigation extends React.Component<{}, {}> {
     return (
       <StyledContainer>
         <Link to={routeConstants.home.path} className="logo">
-          <img src={logo} alt="Logo" width="120" height="20" />
+          <img src={logo} alt="Logo" width="140" height="20" />
         </Link>
         <ul className="menu-list">
           <li className="menu-item">
             <Link to={routeConstants.home.path} activeClassName="active">
-              Trang chủ
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link to={routeConstants.analytics.path} activeClassName="active">
-              Phân tích
+              Mới nhất
             </Link>
           </li>
           <li className="menu-item">

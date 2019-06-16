@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, StaticQuery, graphql } from 'gatsby'
-import Image from "gatsby-image"
-
-import featured1 from '@static/examples/ex-1.jpg';
+import { Link, useStaticQuery, graphql } from 'gatsby'
+import Image from 'gatsby-image'
 
 const StyledContainer = styled.div`
   .thumb {
@@ -26,7 +24,7 @@ const StyledContainer = styled.div`
     padding: 0 ${props => props.theme.rhythm(0.3)};
 
     h3 {
-      margin-top: 0;
+      margin-top: ${props => props.theme.rhythm(1 / 3)};
       margin-bottom: ${props => props.theme.rhythm(1 / 2)};
       color: white;
     }
@@ -41,33 +39,25 @@ const StyledContainer = styled.div`
   }
 `
 
-class FeaturedNews extends React.Component<{}, {}> {
-  render() {
-    return (
-      <StaticQuery
-        query={featuredNewsQuery}
-        render={(data) => {
-          const { featured } = data
-          return (
-            <StyledContainer>
-              <Link to="hi-folks">
-                <div className="thumb">
-                  <Image
-                    fluid={featured.childImageSharp.fluid}
-                    alt="Featured 1"
-                  />
-                </div>
-                <article className="content">
-                  <h3>Shazam trên android có thể nhận diện được bài hát qua tai nghe</h3>
-                  <div className="info">18 phút trước</div>
-                </article>
-              </Link>
-            </StyledContainer>
-          )
-        }}
-      />
-    )
-  }
+const FeaturedNews = () => {
+  const data = useStaticQuery(featuredNewsQuery)
+
+  return (
+    <StyledContainer>
+      <Link to="hi-folks">
+        <div className="thumb">
+          <Image
+            fluid={data.featured.childImageSharp.fluid}
+            alt="Featured 1"
+          />
+        </div>
+        <article className="content">
+          <h3>Shazam trên android có thể nhận diện được bài hát qua tai nghe</h3>
+          <div className="info">18 phút trước</div>
+        </article>
+      </Link>
+    </StyledContainer>
+  )
 }
 
 const featuredNewsQuery = graphql`
