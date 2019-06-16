@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
       position: relative;
       padding: 24px;
       padding-left: calc(24px + 252px + 24px);
-      min-height: calc(24px + 232px + 24px);
+      min-height: calc(24px + 218px + 24px);
     }
 
     .title {
@@ -36,13 +36,16 @@ const StyledContainer = styled.div`
       top: 24px;
       left: 24px;
       width: 252px;
-      /* height: 232px; */
     }
 
     .excerpt, .info {
       ${props => ({
         ...props.theme.scale(- 0.4)
       })}
+    }
+
+    .excerpt {
+      height: ${props => props.theme.rhythm(2.2)};
     }
   }
 
@@ -75,6 +78,7 @@ const StyledContainer = styled.div`
     .excerpt {
       margin-bottom: ${props => props.theme.rhythm(0.1)};
       height: ${props => props.theme.rhythm(4.1)};
+      overflow: hidden;
     }
 
     .info {
@@ -109,7 +113,7 @@ const thumbnailQuery = graphql`
   query ThumbnailQuery {
     featured: file(absolutePath:{ regex: "/ex-3.jpg/" }) {
       childImageSharp {
-        fluid(maxWidth: 252, maxHeight: 232) {
+        fluid(maxWidth: 252, maxHeight: 218) {
           ...GatsbyImageSharpFluid
         }
       }
