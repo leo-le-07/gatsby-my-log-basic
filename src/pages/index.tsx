@@ -1,6 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from 'styled-components'
+import get from 'lodash/get'
 
 import Layout from "@components/common/Layout"
 import SEO from "@components/common/Seo"
@@ -56,9 +57,8 @@ interface IndexPageProps {
 
 class BlogIndex extends React.Component<IndexPageProps, {}> {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -68,10 +68,20 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
             <FeaturedNews />
           </div>
           <div className="thumbnail-post-container">
-            <ThumbnailPost />
-            <ThumbnailPost />
+            {posts.map(({ node }) => {
+              return (
+                <ThumbnailPost
+                  key={node.slug}
+                  title={node.title}
+                  slug={node.slug}
+                  heroImage={node.heroImage}
+                  description={node.description.description}
+                  publishDate={node.publishDate}
+                />
+              )
+            })}
           </div>
-          {posts.map(({ node }) => {
+          {/* {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
             return (
               <div key={node.fields.slug}>
@@ -92,7 +102,7 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
                 />
               </div>
             )
-          })}
+          })} */}
         </StyledContainer>
       </Layout>
     )
@@ -102,24 +112,28 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query HomeQuery {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
+          title
+          tags
+          description {
             description
           }
+          heroImage {
+            sizes(maxWidth: 252, maxHeight: 169, resizingBehavior: SCALE) {
+             ...GatsbyContentfulSizes_withWebp
+            }
+          }
+          publishDate(formatString: "MMMM Do, YYYY")
+          reference
+          slug
         }
       }
     }

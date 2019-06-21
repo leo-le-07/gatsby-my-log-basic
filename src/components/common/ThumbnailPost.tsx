@@ -1,7 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Image from 'gatsby-image'
+
+interface IProps {
+  title: string;
+  slug: string;
+  heroImage: {
+    sizes: {
+      aspectRatio: number,
+      src: string,
+      srcSet: string,
+      sizes: string,
+    }
+  };
+  description: string;
+  publishDate: string;
+}
 
 const StyledContainer = styled.div`
   .article-container {
@@ -22,30 +37,34 @@ const StyledContainer = styled.div`
       position: relative;
       padding: 24px;
       padding-left: calc(24px + 252px + 24px);
-      min-height: calc(24px + 218px + 24px);
+      min-height: calc(24px + 169px + 24px);
     }
 
     .title {
       ${props => ({
         ...props.theme.scale(0.2)
       })}
+      margin-bottom: ${props => props.theme.rhythm(0.5)};
     }
 
     .thumb {
       position: absolute;
-      top: 24px;
+      top: 30px;
       left: 24px;
       width: 252px;
     }
 
     .excerpt, .info {
       ${props => ({
-        ...props.theme.scale(- 0.4)
+        ...props.theme.scale(- 0.45)
       })}
     }
 
     .excerpt {
-      height: ${props => props.theme.rhythm(2.2)};
+      height: ${props => props.theme.rhythm(2.8)};
+      margin-bottom: ${props => props.theme.rhythm(0.5)};
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -87,38 +106,44 @@ const StyledContainer = styled.div`
   }
 `
 
-const ThumbnailPost = () => {
-  const data = useStaticQuery(thumbnailQuery)
+const ThumbnailPost = (props: IProps) => {
+  const {
+    title,
+    slug,
+    heroImage,
+    description,
+    publishDate,
+  } = props
 
   return (
     <StyledContainer>
-      <Link to="hi-folks">
+      <Link to={`/${slug}`}>
         <article className="article-container">
-          <h3 className="title">Một số người cảm thấy thoải mái hơn khi đeo AirPods làm chuyện ấy</h3>
+          <h3 className="title">{title}</h3>
           <div className="thumb">
             <Image
-              fluid={data.featured.childImageSharp.fluid}
-              alt="Featured 1"
+              sizes={heroImage.sizes}
+              alt=""
             />
           </div>
-          <p className="excerpt">Một thăm dò mới đây về thói quen nghe nhạc và tình dục đã cho thấy nhiều người có cảm giác mọi thứ diễn ra tốt đẹp hơn khi có âm nhạc xúc tác lúc hành lạc.</p>
-          <div className="info">1 giờ trước</div>
+          <p className="excerpt">{description}</p>
+          <div className="info">{publishDate}</div>
         </article>
       </Link>
     </StyledContainer>
   )
 }
 
-const thumbnailQuery = graphql`
-  query ThumbnailQuery {
-    featured: file(absolutePath:{ regex: "/ex-3.jpg/" }) {
-      childImageSharp {
-        fluid(maxWidth: 252, maxHeight: 218) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
+// const thumbnailQuery = graphql`
+//   query ThumbnailQuery {
+//     featured: file(absolutePath:{ regex: "/ex-3.jpg/" }) {
+//       childImageSharp {
+//         fluid(maxWidth: 252, maxHeight: 218) {
+//           ...GatsbyImageSharpFluid
+//         }
+//       }
+//     }
+//   }
+// `
 
 export default ThumbnailPost
