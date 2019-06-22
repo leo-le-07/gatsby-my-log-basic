@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import Image from 'gatsby-image'
+import get from 'lodash/get'
 
 const StyledContainer = styled.div`
   .thumb {
@@ -41,19 +42,24 @@ const StyledContainer = styled.div`
 
 const FeaturedNews = () => {
   const data = useStaticQuery(featuredNewsQuery)
+  const featuredPosts = get(data, 'featuredPost.edges')
+
+  const {
+    title,
+    slug,
+    heroImage,
+    publishDate,
+  } = featuredPosts[0].node
 
   return (
     <StyledContainer>
-      <Link to="hi-folks">
+      <Link to={`/${slug}`}>
         <div className="thumb">
-          <Image
-            fluid={data.featured.childImageSharp.fluid}
-            alt="Featured 1"
-          />
+          <Image sizes={heroImage.sizes} alt="" />
         </div>
         <article className="content">
-          <h3>Shazam trên android có thể nhận diện được bài hát qua tai nghe</h3>
-          <div className="info">18 phút trước</div>
+          <h3>{title}</h3>
+          <div className="info">{publishDate}</div>
         </article>
       </Link>
     </StyledContainer>
@@ -62,10 +68,21 @@ const FeaturedNews = () => {
 
 const featuredNewsQuery = graphql`
   query FeaturedNewsQuery {
-    featured: file(absolutePath:{ regex: "/ex-1.jpg/" }) {
-      childImageSharp {
-        fluid(maxWidth: 670, maxHeight: 400) {
-          ...GatsbyImageSharpFluid
+    featuredPost: allContentfulBlogPost(
+      filter: {
+        tags: { eq: "featured" }
+      }
+    ) {
+      edges {
+        node {
+          title
+          heroImage {
+            sizes(maxWidth: 670, maxHeight: 400, resizingBehavior: SCALE) {
+             ...GatsbyContentfulSizes_withWebp
+            }
+          }
+          publishDate(formatString: "DD/MM/YYYY")
+          slug
         }
       }
     }

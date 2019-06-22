@@ -58,7 +58,7 @@ const StyledContainer = styled.div`
 class BlogIndex extends React.Component<IndexPageProps, {}> {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    const posts = get(this, 'props.data.allPosts.edges')
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -81,28 +81,6 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
               )
             })}
           </div>
-          {/* {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug
-            return (
-              <div key={node.fields.slug}>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </div>
-            )
-          })} */}
         </StyledContainer>
       </Layout>
     )
@@ -118,11 +96,15 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allPosts: allContentfulBlogPost(
+      sort: { fields: [publishDate], order: DESC }
+      filter: {
+        tags: { ne: "featured" }
+      }
+    ) {
       edges {
         node {
           title
-          tags
           description {
             description
           }
