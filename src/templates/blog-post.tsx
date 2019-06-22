@@ -106,7 +106,7 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
           />
           {post.reference && (
             <div className="reference-container">
-              <div className="reference">Tham khảo&nbsp;</div>
+              <div className="reference">Theo&nbsp;</div>
               <div className="name">{post.reference}</div>
             </div>
           )}
@@ -154,6 +154,9 @@ export const pageQuery = graphql`
     }
     recentPosts: allContentfulBlogPost(
       sort: { fields: [publishDate], order: DESC }
+      filter: {
+        slug: { ne: $slug }
+      }
       limit: 6
     ) {
       edges {
