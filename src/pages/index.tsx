@@ -24,19 +24,6 @@ interface INode {
   }
 }
 
-const StyledContainer = styled.div`
-  .thumbnail-post-container {
-    margin-top: ${props => props.theme.rhythm(1)};
-  }
-
-  /* Mobile Styles */
-  @media only screen and (max-width: 600px) {
-    .thumbnail-post-container {
-      margin-top: 0;
-    }
-  }
-`
-
 interface IEdge {
   node: INode
 }
@@ -54,6 +41,19 @@ interface IndexPageProps {
   }
   location: ILocation
 }
+
+const StyledContainer = styled.div`
+  .thumbnail-post-container {
+    margin-top: ${props => props.theme.rhythm(1)};
+  }
+
+  /* Mobile Styles */
+  @media only screen and (max-width: 600px) {
+    .thumbnail-post-container {
+      margin-top: 0;
+    }
+  }
+`
 
 class BlogIndex extends React.Component<IndexPageProps, {}> {
   render() {

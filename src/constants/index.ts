@@ -22,5 +22,6 @@ export const colors = {
   black500: '#222',
   black600: '#161D28',
   gray500: '#b1b1b1',
+  gray600: '#777',
   yellow500: '#F7D02D',
 }
