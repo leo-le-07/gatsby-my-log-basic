@@ -131,7 +131,7 @@ export const pageQuery = graphql`
              ...GatsbyContentfulSizes_withWebp
             }
           }
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate(formatString: "DD/MM/YYYY")
           reference
           slug
         }

@@ -2,7 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import styled, { ThemeProvider } from 'styled-components'
 
-import Navigation from '@components/common/Navigation';
+import Navigation from '@components/common/Navigation'
+import Footer from '@components/common/Footer'
 
 import { rhythm, scale } from "@utils/typography"
 import { colors } from '@constants/index'
@@ -47,10 +48,14 @@ const MainContainer = styled.div`
 `
 
 const FooterContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: ${props => props.theme.rhythm(26)};
-  padding: 0 ${props => props.theme.rhythm(3 / 4)};
+  background: ${props => props.theme.colors.primary};;
+  color: white;
+  margin-top: ${props => props.theme.rhythm(1)};
+
+  /* Mobile Styles */
+  @media only screen and (max-width: 600px) {
+    margin-top: 0;
+  }
 `
 
 class Layout extends React.Component<ILayout, {}> {
@@ -112,11 +117,7 @@ class Layout extends React.Component<ILayout, {}> {
             <main>{children}</main>
           </MainContainer>
           <FooterContainer>
-            <footer>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
+            <Footer />
           </FooterContainer>
         </AppContainer>
       </ThemeProvider>
