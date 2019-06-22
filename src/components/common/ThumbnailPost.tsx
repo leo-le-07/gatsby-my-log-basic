@@ -121,10 +121,7 @@ const ThumbnailPost = (props: IProps) => {
         <article className="article-container">
           <h3 className="title">{title}</h3>
           <div className="thumb">
-            <Image
-              sizes={heroImage.sizes}
-              alt=""
-            />
+            <Image sizes={heroImage.sizes} alt="" />
           </div>
           <p className="excerpt">{description}</p>
           <div className="info">{publishDate}</div>

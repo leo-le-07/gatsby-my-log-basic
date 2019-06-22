@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import Layout from '@components/common/Layout'
 import SEO from '@components/common/Seo'
+import RecentPost from '@components/BlogPost/RecentPost'
 
 interface INode {
   title: string
@@ -56,11 +57,35 @@ const StyledContainer = styled.div`
     font-style: italic;
     color: ${props => props.theme.colors.gray600};
   }
+
+  .recent-posts-container {
+    .recent-posts-title {
+      text-transform: uppercase;
+      position: relative;
+      padding-left: ${props => props.theme.rhythm(3 / 4)};
+
+      &::before {
+        content: '';
+        background-color: ${props => props.theme.colors.secondary};
+        width: 5px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .recent-posts-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 `
 
 class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
   render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
+    const post = get(this.props, 'data.postDetails')
+    const recentPosts = get(this.props, 'data.recentPosts.edges')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
@@ -85,6 +110,19 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
               <div className="name">{post.reference}</div>
             </div>
           )}
+          <div className="recent-posts-container">
+            <h4 className="recent-posts-title">Bài viết mới nhất</h4>
+            <div className="recent-posts-list">
+              {recentPosts.map(({ node }) => (
+                <RecentPost
+                  key={node.slug}
+                  title={node.title}
+                  heroImage={node.heroImage}
+                  slug={node.slug}
+                />
+              ))}
+            </div>
+          </div>
         </StyledContainer>
       </Layout>
     )
@@ -101,7 +139,7 @@ export const pageQuery = graphql`
         author
       }
     }
-    contentfulBlogPost(slug: { eq: $slug }) {
+    postDetails: contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishDate(formatString: "DD/MM/YYYY")
       description {
@@ -113,6 +151,22 @@ export const pageQuery = graphql`
         }
       }
       reference
+    }
+    recentPosts: allContentfulBlogPost(
+      sort: { fields: [publishDate], order: DESC }
+      limit: 6
+    ) {
+      edges {
+        node {
+          slug
+          title
+          heroImage {
+            sizes(maxWidth: 192, maxHeight: 120, resizingBehavior: SCALE) {
+             ...GatsbyContentfulSizes_withWebp
+            }
+          }
+        }
+      }
     }
   }
 `

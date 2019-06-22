@@ -39,6 +39,7 @@ const StyledContainer = styled.div`
   .menu-item {
     margin-left: ${props => props.theme.rhythm(1)};
     margin-bottom: 0;
+    text-transform: uppercase;
 
     a {
       display: flex;
