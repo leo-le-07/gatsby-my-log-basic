@@ -33,8 +33,8 @@ const StyledContainer = styled.div`
 
     .published-date {
       ${props => ({
-      ...props.theme.scale(-0.3)
-    })}
+        ...props.theme.scale(-0.3)
+      })}
       margin-top: ${props => props.theme.rhythm(-0.75)};
       color: ${props => props.theme.colors.gray600};
     }
@@ -48,6 +48,13 @@ const StyledContainer = styled.div`
     img {
       width: 100%;
     }
+  }
+
+  .reference-container {
+    display: flex;
+    justify-content: flex-end;
+    font-style: italic;
+    color: ${props => props.theme.colors.gray600};
   }
 `
 
@@ -72,6 +79,12 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
           <div className="body-container"
             dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
           />
+          {post.reference && (
+            <div className="reference-container">
+              <div className="reference">Tham khảo&nbsp;</div>
+              <div className="name">{post.reference}</div>
+            </div>
+          )}
         </StyledContainer>
       </Layout>
     )
@@ -99,6 +112,7 @@ export const pageQuery = graphql`
           html
         }
       }
+      reference
     }
   }
 `
