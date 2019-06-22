@@ -8,9 +8,6 @@ import SEO from '@components/common/Seo'
 import FeaturedNews from '@components/home/FeaturedNews'
 import ThumbnailPost from '@components/common/ThumbnailPost'
 
-
-// Please note that you can use https://github.com/dotansimha/graphql-code-generator
-// to generate all types from graphQL schema
 interface INode {
   slug: string
   title: string
@@ -32,7 +29,7 @@ interface IEdge {
   node: INode
 }
 
-interface IndexPageProps {
+interface IProps {
   data: {
     site: {
       siteMetadata: {
@@ -59,7 +56,7 @@ const StyledContainer = styled.div`
   }
 `
 
-class HomePage extends React.Component<IndexPageProps, {}> {
+class KnowledgePage extends React.Component<IProps, {}> {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allPosts.edges')
@@ -97,10 +94,10 @@ class HomePage extends React.Component<IndexPageProps, {}> {
   }
 }
 
-export default HomePage
+export default KnowledgePage
 
 export const pageQuery = graphql`
-  query HomePageQuery {
+  query KnowledgePageQuery {
     site {
       siteMetadata {
         title
@@ -109,7 +106,7 @@ export const pageQuery = graphql`
     allPosts: allContentfulBlogPost(
       sort: { fields: [publishDate], order: DESC }
       filter: {
-        tags: { ne: "featured" }
+        tags: { eq: "knowledge" }
       }
     ) {
       edges {
@@ -131,7 +128,7 @@ export const pageQuery = graphql`
     }
     featuredPost: allContentfulBlogPost(
       filter: {
-        tags: { eq: "featured" }
+        tags: { eq: "featured-knowledge" }
       }
     ) {
       edges {

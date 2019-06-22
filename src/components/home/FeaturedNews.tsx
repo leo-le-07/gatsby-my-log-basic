@@ -1,8 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import Image from 'gatsby-image'
-import get from 'lodash/get'
+
+interface IProps {
+  slug: string
+  title: string
+  publishDate: string
+  heroImage: {
+    sizes: {
+      aspectRatio: number,
+      src: string,
+      srcSet: string,
+      sizes: string,
+    }
+  }
+}
 
 const StyledContainer = styled.div`
   .thumb {
@@ -40,16 +53,13 @@ const StyledContainer = styled.div`
   }
 `
 
-const FeaturedNews = () => {
-  const data = useStaticQuery(featuredNewsQuery)
-  const featuredPosts = get(data, 'featuredPost.edges')
-
+const FeaturedNews = (props: IProps) => {
   const {
     title,
     slug,
     heroImage,
     publishDate,
-  } = featuredPosts[0].node
+  } = props
 
   return (
     <StyledContainer>
@@ -65,28 +75,5 @@ const FeaturedNews = () => {
     </StyledContainer>
   )
 }
-
-const featuredNewsQuery = graphql`
-  query FeaturedNewsQuery {
-    featuredPost: allContentfulBlogPost(
-      filter: {
-        tags: { eq: "featured" }
-      }
-    ) {
-      edges {
-        node {
-          title
-          heroImage {
-            sizes(maxWidth: 670, maxHeight: 400, resizingBehavior: SCALE) {
-             ...GatsbyContentfulSizes_withWebp
-            }
-          }
-          publishDate(formatString: "DD/MM/YYYY")
-          slug
-        }
-      }
-    }
-  }
-`
 
 export default FeaturedNews
