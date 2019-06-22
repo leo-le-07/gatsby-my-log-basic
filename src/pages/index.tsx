@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import styled from 'styled-components'
 import get from 'lodash/get'
 
@@ -8,19 +8,23 @@ import SEO from "@components/common/Seo"
 import FeaturedNews from '@components/home/FeaturedNews'
 import ThumbnailPost from '@components/common/ThumbnailPost'
 
-import { rhythm } from "@utils/typography"
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
 interface INode {
-  excerpt: string
-  fields: {
-    slug: string
-  }
-  frontmatter: {
-    title: string
-    date: string
+  slug: string
+  title: string
+  publishDate: string
+  description: {
     description: string
+  }
+  heroImage: {
+    sizes: {
+      aspectRatio: number,
+      src: string,
+      srcSet: string,
+      sizes: string,
+    }
   }
 }
 
@@ -35,7 +39,7 @@ interface IndexPageProps {
         title: string
       }
     },
-    allMarkdownRemark: {
+    allPosts: {
       edges: IEdge[]
     }
   }
@@ -68,7 +72,7 @@ class BlogIndex extends React.Component<IndexPageProps, {}> {
             <FeaturedNews />
           </div>
           <div className="thumbnail-post-container">
-            {posts.map(({ node }) => {
+            {posts.map(({ node }: { node: INode }) => {
               return (
                 <ThumbnailPost
                   key={node.slug}

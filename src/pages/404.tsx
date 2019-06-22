@@ -1,13 +1,20 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
+import styled from 'styled-components'
 
-import Layout from "@components/common/Layout"
-import SEO from "@components/common/Seo"
+import Layout from '@components/common/Layout'
+import SEO from '@components/common/Seo'
 
 interface INotFound {
   data: any
   location: ILocation
 }
+
+const StyledContainer = styled.div`
+  /* Mobile Styles */
+  @media only screen and (max-width: 600px) {
+  }
+`
 
 class NotFoundPage extends React.Component<INotFound, {}> {
   render() {
@@ -16,9 +23,17 @@ class NotFoundPage extends React.Component<INotFound, {}> {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <StyledContainer>
+          <SEO title="Không tìm thấy trang" />
+          <h1>Nội dung bạn tìm kiếm không tồn tại</h1>
+          <p>
+            Quay trở lại&nbsp;
+            <Link to={`/`}>
+              trang chủ
+            </Link>
+            &nbsp;để xem các thông tin mới nhất
+          </p>
+        </StyledContainer>
       </Layout>
     )
   }

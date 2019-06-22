@@ -21,6 +21,9 @@ const theme = {
 }
 
 const AppContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+  min-height: 100vh;
   background: ${props => props.theme.colors.mainBackground};
 
   a {
@@ -34,6 +37,7 @@ const HeaderContainer = styled.div`
 `
 
 const MainContainer = styled.div`
+  flex: 1;
   margin-left: auto;
   margin-right: auto;
   max-width: ${props => props.theme.rhythm(26)};
@@ -60,53 +64,8 @@ const FooterContainer = styled.div`
 
 class Layout extends React.Component<ILayout, {}> {
   render() {
-    const { location, title, children } = this.props
-    // @ts-ignore
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const { children } = this.props
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
     return (
       <ThemeProvider theme={theme}>
         <AppContainer>
