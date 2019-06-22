@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
 
   .thumb {
     margin-bottom: ${props => props.theme.rhythm(0.25)};
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid ${props => props.theme.colors.borderThumbnail};
   }
 
   /* Mobile Styles */

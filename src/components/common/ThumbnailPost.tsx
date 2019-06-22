@@ -32,6 +32,10 @@ const StyledContainer = styled.div`
     color: ${props => props.theme.colors.gray500};
   }
 
+  .thumb {
+    border: 1px solid ${props => props.theme.colors.borderThumbnail};
+  }
+
   @media only screen and (min-width: 601px) {
     .article-container {
       position: relative;

@@ -18,6 +18,7 @@ export const colors = {
   secondary: '#F7D02D',
   mainBackground: '#F7F7F7',
   border: '#ebebeb',
+  borderThumbnail: 'rgba(0, 0, 0, 0.05)',
 
   black500: '#222',
   black600: '#161D28',
