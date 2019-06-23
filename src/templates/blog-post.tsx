@@ -52,10 +52,9 @@ const StyledContainer = styled.div`
   }
 
   .reference-container {
-    display: flex;
-    justify-content: flex-end;
     font-style: italic;
     color: ${props => props.theme.colors.gray600};
+    text-align: right;
   }
 
   .recent-posts-container {
@@ -106,8 +105,8 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
           />
           {post.reference && (
             <div className="reference-container">
-              <div className="reference">Theo&nbsp;</div>
-              <div className="name">{post.reference}</div>
+              <div className="reference">Theo {post.reference}</div>
+              <div className="reference">Biên soạn lại bởi Tradervietcoin.com</div>
             </div>
           )}
           <div className="recent-posts-container">

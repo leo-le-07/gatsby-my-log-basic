@@ -5,7 +5,7 @@ import get from 'lodash/get'
 
 import Layout from '@components/common/Layout'
 import SEO from '@components/common/Seo'
-import FeaturedNews from '@components/home/FeaturedNews'
+import FeaturedNews from '@components/common/FeaturedNews'
 import ThumbnailPost from '@components/common/ThumbnailPost'
 
 

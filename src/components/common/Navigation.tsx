@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import { routeConstants } from '@constants/index'
-import logo from '@static/genk-logo.png'
+import logo from '@static/icon.png'
 
 const StyledContainer = styled.div`
   margin-left: auto;
@@ -20,7 +20,6 @@ const StyledContainer = styled.div`
 
   img {
     margin-bottom: 0;
-    min-width: 140px;
   }
 
   .logo {
@@ -34,6 +33,7 @@ const StyledContainer = styled.div`
     list-style: none;
     display: flex;
     margin-bottom: 0;
+    margin-left: 0;
   }
 
   .menu-item {
@@ -76,7 +76,7 @@ class Navigation extends React.Component<{}, {}> {
     return (
       <StyledContainer>
         <Link to={routeConstants.home.path} className="logo">
-          <img src={logo} alt="Logo" width="140" height="20" />
+          <img src={logo} alt="Logo" width="36" height="36" />
         </Link>
         <ul className="menu-list">
           <li className="menu-item">
