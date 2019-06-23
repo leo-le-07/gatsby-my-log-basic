@@ -68,7 +68,7 @@ class HomePage extends React.Component<IndexPageProps, {}> {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <StyledContainer>
-          <SEO title="All posts" />
+          <SEO title="Mới nhất" />
           <div className="featured-container">
             <FeaturedNews
               title={featuredPost.title}

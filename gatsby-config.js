@@ -23,12 +23,12 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: `Traderviet Bitcoin`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `Tradervietcoin`,
+    author: `Trader Viet`,
+    description: `Cộng đồng Tradervietcoin Việt Nam`,
+    siteUrl: `https://www.tradervietcoin.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `tradervietcoin`,
     },
   },
   plugins: [

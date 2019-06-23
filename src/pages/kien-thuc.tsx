@@ -65,7 +65,7 @@ class KnowledgePage extends React.Component<IProps, {}> {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <StyledContainer>
-          <SEO title="All posts" />
+          <SEO title="Kiến thức" />
           <div className="featured-container">
             <FeaturedNews
               title={featuredPost.title}
