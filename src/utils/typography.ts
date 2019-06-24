@@ -1,5 +1,5 @@
-import Typography from "typography"
-import customTheme from "typography-theme-ocean-beach"
+import Typography from 'typography'
+import customTheme from 'typography-theme-ocean-beach'
 
 customTheme.overrideThemeStyles = () => {
   return {
@@ -11,6 +11,7 @@ customTheme.overrideThemeStyles = () => {
 
 const typography = new Typography(customTheme)
 
+// @ts-ignore
 typography.overrideStyles = () => {
   return {
     body: {

@@ -48,6 +48,7 @@
     "typography-theme-ocean-beach": "^0.16.19"
   },
   "devDependencies": {
+    "@types/typography": "^0.16.2",
     "tslint": "^5.17.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
