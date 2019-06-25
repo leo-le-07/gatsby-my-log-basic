@@ -36,6 +36,7 @@ const StyledContainer = styled.div`
     display: inline-block;
     background-color: ${props => props.theme.colors.black600};
     padding: 0 ${props => props.theme.rhythm(0.3)};
+    width: 100%;
 
     h3 {
       margin-top: ${props => props.theme.rhythm(1 / 3)};

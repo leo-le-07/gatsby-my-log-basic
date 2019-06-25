@@ -106,7 +106,7 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
           {post.reference && (
             <div className="reference-container">
               <div className="reference">Theo {post.reference}</div>
-              <div className="reference">Biên soạn lại bởi Tradervietcoin.com</div>
+              <div className="reference">Biên soạn bởi Tradervietcoin.com</div>
             </div>
           )}
           <div className="recent-posts-container">
