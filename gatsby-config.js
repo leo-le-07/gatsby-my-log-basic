@@ -51,11 +51,13 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
-              maxWidth: 590,
+              maxWidth: 740,
+              linkImagesToOriginal: false,
             },
           },
+          `gatsby-remark-images-zoom`,
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
