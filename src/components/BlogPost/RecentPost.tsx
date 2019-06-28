@@ -22,9 +22,7 @@ const StyledContainer = styled.div`
   padding: 0 ${props => props.theme.rhythm(0.25)};
 
   .title {
-    ${props => ({
-      ...props.theme.scale(-0.3)
-    })}
+    ${props => ({ ...props.theme.scale(-0.3) })}
     line-height: ${props => props.theme.rhythm(0.8)};
     font-weight: bold;
   }
