@@ -68,6 +68,10 @@ const StyledContainer = styled.div`
     img {
       width: 100%;
     }
+
+    .twitter-tweet {
+      width: 100% !important;
+    }
   }
 
   .reference-container {
@@ -166,7 +170,7 @@ export const pageQuery = graphql`
       title
       publishDate(formatString: "DD/MM/YYYY")
       heroImage {
-        sizes(maxWidth: 855, maxHeight: 529, resizingBehavior: SCALE) {
+        sizes(maxWidth: 730, maxHeight: 490, resizingBehavior: SCALE) {
           ...GatsbyContentfulSizes_withWebp
         }
       }
