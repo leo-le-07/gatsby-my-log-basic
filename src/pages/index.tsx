@@ -63,7 +63,7 @@ class HomePage extends React.Component<IndexPageProps, {}> {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allPosts.edges')
-    const featuredPost = get(this, 'props.data.featuredPost.edges')[0].node
+    const featuredPost = posts.shift().node
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -108,9 +108,6 @@ export const pageQuery = graphql`
     }
     allPosts: allContentfulBlogPost(
       sort: { fields: [publishDate], order: DESC }
-      filter: {
-        tags: { ne: "featured" }
-      }
     ) {
       edges {
         node {
@@ -119,30 +116,12 @@ export const pageQuery = graphql`
             description
           }
           heroImage {
-            sizes(maxWidth: 252, maxHeight: 169, resizingBehavior: SCALE) {
+            sizes(maxWidth: 730, maxHeight: 490, resizingBehavior: SCALE) {
              ...GatsbyContentfulSizes_withWebp
             }
           }
           publishDate(formatString: "DD/MM/YYYY")
           reference
-          slug
-        }
-      }
-    }
-    featuredPost: allContentfulBlogPost(
-      filter: {
-        tags: { eq: "featured" }
-      }
-    ) {
-      edges {
-        node {
-          title
-          heroImage {
-            sizes(maxWidth: 670, maxHeight: 400, resizingBehavior: SCALE) {
-             ...GatsbyContentfulSizes_withWebp
-            }
-          }
-          publishDate(formatString: "DD/MM/YYYY")
           slug
         }
       }

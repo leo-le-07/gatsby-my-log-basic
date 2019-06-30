@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import styled from 'styled-components'
+import Image from 'gatsby-image'
 
 import Layout from '@components/common/Layout'
 import SEO from '@components/common/Seo'
@@ -12,7 +13,20 @@ interface INode {
   slug: string
 }
 
-interface IBlogPostTemplateProps {
+interface IRecentPost {
+  heroImage: {
+    sizes: {
+      aspectRatio: number,
+      src: string,
+      srcSet: string,
+      sizes: string,
+    }
+  }
+  slug: string
+  title: string
+}
+
+interface IProps {
   pageContext: {
     slug: string
     previous: INode
@@ -22,10 +36,13 @@ interface IBlogPostTemplateProps {
 }
 
 const StyledContainer = styled.div`
-  padding: ${props => props.theme.rhythm(3/4)} ${props => props.theme.rhythm(3 / 4)};
   background-color: white;
   border-radius: 3px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+  .content-container {
+    padding: ${props => props.theme.rhythm(3 / 4)} ${props => props.theme.rhythm(3 / 4)};
+  }
 
   .header-container {
     h1 {
@@ -39,6 +56,8 @@ const StyledContainer = styled.div`
       margin-top: ${props => props.theme.rhythm(-0.75)};
       color: ${props => props.theme.colors.gray600};
     }
+
+    margin-bottom: ${props => props.theme.rhythm(0.75)};
   }
 
   .body-container {
@@ -58,7 +77,7 @@ const StyledContainer = styled.div`
   }
 
   .recent-posts-container {
-    .recent-posts-title {
+    .title {
       text-transform: uppercase;
       position: relative;
       padding-left: ${props => props.theme.rhythm(3 / 4)};
@@ -74,14 +93,14 @@ const StyledContainer = styled.div`
       }
     }
 
-    .recent-posts-list {
+    .list {
       display: flex;
       flex-wrap: wrap;
     }
   }
 `
 
-class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
+class BlogPostTemplate extends React.Component<IProps, {}> {
   render() {
     const post = get(this.props, 'data.postDetails')
     const recentPosts = get(this.props, 'data.recentPosts.edges')
@@ -94,32 +113,37 @@ class BlogPostTemplate extends React.Component<IBlogPostTemplateProps, {}> {
             title={post.title}
             description={post.description.description}
           />
-          <div className="header-container">
-            <h1>{post.title}</h1>
-            <div className="published-date">
-              {post.publishDate}
-            </div>
+          <div className="cover-hero-image">
+            <Image sizes={post.heroImage.sizes} alt="" />
           </div>
-          <div className="body-container"
-            dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
-          />
-          {post.reference && (
-            <div className="reference-container">
-              <div className="reference">Theo {post.reference}</div>
-              <div className="reference">Biên soạn bởi Tradervietcoin.com</div>
+          <div className="content-container">
+            <div className="header-container">
+              <h1>{post.title}</h1>
+              <div className="published-date">
+                {post.publishDate}
+              </div>
             </div>
-          )}
-          <div className="recent-posts-container">
-            <h4 className="recent-posts-title">Bài viết mới nhất</h4>
-            <div className="recent-posts-list">
-              {recentPosts.map(({ node }) => (
-                <RecentPost
-                  key={node.slug}
-                  title={node.title}
-                  heroImage={node.heroImage}
-                  slug={node.slug}
-                />
-              ))}
+            <div className="body-container"
+              dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
+            />
+            {post.reference && (
+              <div className="reference-container">
+                <div className="reference">Theo {post.reference}</div>
+                <div className="reference">Biên soạn bởi Tradervietcoin.com</div>
+              </div>
+            )}
+            <div className="recent-posts-container">
+              <h4 className="title">Bài viết mới nhất</h4>
+              <div className="list">
+                {recentPosts.map(({ node }: { node: IRecentPost }) => (
+                  <RecentPost
+                    key={node.slug}
+                    title={node.title}
+                    heroImage={node.heroImage}
+                    slug={node.slug}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </StyledContainer>
@@ -141,6 +165,11 @@ export const pageQuery = graphql`
     postDetails: contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishDate(formatString: "DD/MM/YYYY")
+      heroImage {
+        sizes(maxWidth: 855, maxHeight: 529, resizingBehavior: SCALE) {
+          ...GatsbyContentfulSizes_withWebp
+        }
+      }
       description {
         description
       }
