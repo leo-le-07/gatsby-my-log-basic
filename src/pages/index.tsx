@@ -11,7 +11,7 @@ import ThumbnailPost from '@components/common/ThumbnailPost'
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema
-interface INode {
+interface IPost {
   slug: string
   title: string
   publishDate: string
@@ -29,7 +29,7 @@ interface INode {
 }
 
 interface IEdge {
-  node: INode
+  node: IPost
 }
 
 interface IndexPageProps {
@@ -62,8 +62,8 @@ const StyledContainer = styled.div`
 class HomePage extends React.Component<IndexPageProps, {}> {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allPosts.edges')
-    const featuredPost = posts.shift().node
+    const posts = get(this, 'props.data.allPosts.edges').map((item: { node: IPost }) => item.node)
+    const featuredPost = posts.shift()
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -78,15 +78,15 @@ class HomePage extends React.Component<IndexPageProps, {}> {
             />
           </div>
           <div className="thumbnail-post-container">
-            {posts.map(({ node }: { node: INode }) => {
+            {posts.map((post: IPost) => {
               return (
                 <ThumbnailPost
-                  key={node.slug}
-                  title={node.title}
-                  slug={node.slug}
-                  heroImage={node.heroImage}
-                  description={node.description.description}
-                  publishDate={node.publishDate}
+                  key={post.slug}
+                  title={post.title}
+                  slug={post.slug}
+                  heroImage={post.heroImage}
+                  description={post.description.description}
+                  publishDate={post.publishDate}
                 />
               )
             })}
