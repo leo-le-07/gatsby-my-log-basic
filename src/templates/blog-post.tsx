@@ -77,7 +77,7 @@ const StyledContainer = styled.div`
   }
 
   .recent-posts-container {
-    .title {
+    .heading-title {
       text-transform: uppercase;
       position: relative;
       padding-left: ${props => props.theme.rhythm(3 / 4)};
@@ -133,7 +133,7 @@ class BlogPostTemplate extends React.Component<IProps, {}> {
               </div>
             )}
             <div className="recent-posts-container">
-              <h4 className="title">Bài viết mới nhất</h4>
+              <h4 className="heading-title">Bài viết mới nhất</h4>
               <div className="list">
                 {recentPosts.map(({ node }: { node: IRecentPost }) => (
                   <RecentPost
